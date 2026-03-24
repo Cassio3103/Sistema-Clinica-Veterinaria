@@ -4,12 +4,12 @@ import lombok.Getter;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @RequestMapping
 public class PacienteRequestDTO {
 
+    private int paciente_id;
     private String nomePaciente;
     private LocalDate dataNascimentoPaciente;
     private double pesoPaciente;
@@ -18,8 +18,9 @@ public class PacienteRequestDTO {
     private String raca;
     private boolean possuiProblemaSaude;
 
-    public PacienteRequestDTO(String nomePaciente, LocalDate dataNascimentoPaciente, double pesoPaciente,
+    public PacienteRequestDTO(int paciente_id, String nomePaciente, LocalDate dataNascimentoPaciente, double pesoPaciente,
                               char sexoPaciente, String especie, String raca, boolean possuiProblemaSaude){
+        this.paciente_id = paciente_id;
         this.nomePaciente = nomePaciente;
         this.dataNascimentoPaciente = dataNascimentoPaciente;
         this.pesoPaciente = pesoPaciente;

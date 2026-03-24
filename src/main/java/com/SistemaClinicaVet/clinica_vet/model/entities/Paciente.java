@@ -1,9 +1,6 @@
 package com.SistemaClinicaVet.clinica_vet.model.entities;
 
-import com.SistemaClinicaVet.clinica_vet.dto.PacienteRequestDTO;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Paciente {
 
@@ -58,7 +55,7 @@ public class Paciente {
         return raca;
     }
 
-    public boolean isPossuiProblemaSaude() {
+    public boolean getPossuiProblemaSaude() {
         return possuiProblemaSaude;
     }
 

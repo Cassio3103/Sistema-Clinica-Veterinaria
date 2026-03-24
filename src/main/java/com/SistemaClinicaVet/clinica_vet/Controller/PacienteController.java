@@ -5,10 +5,7 @@ import com.SistemaClinicaVet.clinica_vet.dto.PacienteResponseDTO;
 import com.SistemaClinicaVet.clinica_vet.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/paciente")
@@ -19,6 +16,11 @@ public class PacienteController {
 
     @PostMapping("/cadastrar")
     public ResponseEntity<PacienteResponseDTO> cadastrarPaciente(@RequestBody PacienteRequestDTO pacienteRequestDTO){
+        return ResponseEntity.ok().body(pacienteService.cadastrarPaciente(pacienteRequestDTO));
+    }
+
+    @PutMapping("/atualizar")
+    public ResponseEntity<PacienteResponseDTO> atualizarPaciente(@RequestBody PacienteRequestDTO pacienteRequestDTO){
         return ResponseEntity.ok().body(pacienteService.cadastrarPaciente(pacienteRequestDTO));
     }
 }

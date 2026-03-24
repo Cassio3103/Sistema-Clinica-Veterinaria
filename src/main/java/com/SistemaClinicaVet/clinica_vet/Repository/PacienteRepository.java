@@ -11,7 +11,7 @@ public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
         return true;
     }
 
-      Optional<Paciente> findById(int id);
+    Optional<Paciente> findById(int id);
 
     boolean existsById();
 }
