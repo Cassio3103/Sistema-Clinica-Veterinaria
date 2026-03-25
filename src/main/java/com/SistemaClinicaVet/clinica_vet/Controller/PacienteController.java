@@ -19,8 +19,14 @@ public class PacienteController {
         return ResponseEntity.ok().body(pacienteService.cadastrarPaciente(pacienteRequestDTO));
     }
 
-    @PutMapping("/atualizar")
+    @GetMapping("/buscar/{id}")
+
+    @PutMapping("/atualizar/{id}")
     public ResponseEntity<PacienteResponseDTO> atualizarPaciente(@RequestBody PacienteRequestDTO pacienteRequestDTO){
         return ResponseEntity.ok().body(pacienteService.cadastrarPaciente(pacienteRequestDTO));
     }
+
+    //@DeleteMapping("/deletar/{id}")
+
+
 }

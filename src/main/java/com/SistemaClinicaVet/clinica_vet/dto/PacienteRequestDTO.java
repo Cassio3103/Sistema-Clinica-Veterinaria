@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 
-@Getter
 @RequestMapping
 public class PacienteRequestDTO {
 
@@ -28,6 +27,38 @@ public class PacienteRequestDTO {
         this.especie = especie;
         this.raca = raca;
         this.possuiProblemaSaude = possuiProblemaSaude;
+    }
+
+    public int getPaciente_id() {
+        return paciente_id;
+    }
+
+    public String getNomePaciente() {
+        return nomePaciente;
+    }
+
+    public LocalDate getDataNascimentoPaciente() {
+        return dataNascimentoPaciente;
+    }
+
+    public double getPesoPaciente() {
+        return pesoPaciente;
+    }
+
+    public char getSexoPaciente() {
+        return sexoPaciente;
+    }
+
+    public String getEspecie() {
+        return especie;
+    }
+
+    public String getRaca() {
+        return raca;
+    }
+
+    public boolean possuiProblemaSaude() {
+        return possuiProblemaSaude;
     }
 
     public void setNomePaciente(String nomePaciente) {

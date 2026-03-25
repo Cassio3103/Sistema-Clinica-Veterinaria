@@ -45,4 +45,14 @@ public class GlobalExcetionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(threatResponse);
     }
 
+    @ExceptionHandler(NoChangeException.class)
+    private ResponseEntity<RestErrorMessage> NoChangeHandler
+            (PacienteInexistenteException exception) {
+        RestErrorMessage threatResponse = new RestErrorMessage((HttpStatus.NOT_FOUND),
+                exception.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(threatResponse);
+    }
+
+
 }
