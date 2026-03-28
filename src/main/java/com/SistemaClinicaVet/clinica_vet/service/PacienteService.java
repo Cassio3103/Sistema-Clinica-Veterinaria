@@ -1,6 +1,8 @@
 package com.SistemaClinicaVet.clinica_vet.service;
 
+import com.SistemaClinicaVet.clinica_vet.service.MetodosAuxilixaresService;
 import com.SistemaClinicaVet.clinica_vet.Exception.NoChangeException;
+import com.SistemaClinicaVet.clinica_vet.Exception.PacienteInexistenteException;
 import com.SistemaClinicaVet.clinica_vet.Exception.PacienteNaoEncontradoException;
 import com.SistemaClinicaVet.clinica_vet.Repository.PacienteRepository;
 import com.SistemaClinicaVet.clinica_vet.dto.PacienteRequestDTO;
@@ -14,7 +16,7 @@ import java.time.Period;
 
 
 @Service
-public class PacienteService {
+public class PacienteService extends MetodosAuxilixaresService{
 
     @Autowired
     private PacienteRepository pacienteRepository;
@@ -24,7 +26,9 @@ public class PacienteService {
     }
 
     public PacienteResponseDTO cadastrarPaciente(PacienteRequestDTO dto){
-        if(pacienteRepository.existsById(dto.getPaciente_id()))
+
+        if(
+                pacienteRepository.existsById(dto.getPaciente_id()))
             throw new IllegalArgumentException("Um paciente com esse ID já está cadastrado!");
 
 
@@ -72,9 +76,8 @@ public class PacienteService {
     }
 
     public PacienteResponseDTO atualizarPaciente(int paciente_id, PacienteRequestDTO dto){
-        Paciente paciente = pacienteRepository.findById(paciente_id)
-                .orElseThrow(() -> new PacienteNaoEncontradoException("Paciente não encontrado!"));
 
+        Paciente paciente = verificarPaciente(paciente_id);
         pacienteMudanca(paciente, dto);
 
         paciente.setNomePaciente(dto.getNomePaciente());
@@ -82,6 +85,22 @@ public class PacienteService {
         paciente.setPossuiProblemaSaude(dto.possuiProblemaSaude());
 
         pacienteRepository.save(paciente);
+
+        return new PacienteResponseDTO(
+                paciente.getPaciente_id(),
+                paciente.getNomePaciente(),
+                paciente.getDataNascimentoPaciente(),
+                paciente.getPesoPaciente(),
+                paciente.getSexoPaciente(),
+                paciente.getEspecie(),
+                paciente.getRaca(),
+                paciente.getPossuiProblemaSaude()
+        );
+    }
+
+    public PacienteResponseDTO buscarPaciente(int paciente_id, PacienteRequestDTO pacienteRequestDTO){
+
+        Paciente paciente = verificarPaciente(paciente_id);
 
         return new PacienteResponseDTO(
                 paciente.getPaciente_id(),

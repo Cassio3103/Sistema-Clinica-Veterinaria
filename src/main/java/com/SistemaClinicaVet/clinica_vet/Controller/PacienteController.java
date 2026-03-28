@@ -20,10 +20,13 @@ public class PacienteController {
     }
 
     @GetMapping("/buscar/{id}")
+    public ResponseEntity<PacienteResponseDTO> buscarPaciente(@PathVariable int id, @RequestBody PacienteRequestDTO pacienteRequestDTO){
+        return ResponseEntity.ok().body(pacienteService.buscarPaciente(id, pacienteRequestDTO));
+    }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<PacienteResponseDTO> atualizarPaciente(@RequestBody PacienteRequestDTO pacienteRequestDTO){
-        return ResponseEntity.ok().body(pacienteService.cadastrarPaciente(pacienteRequestDTO));
+    public ResponseEntity<PacienteResponseDTO> atualizarPaciente(@PathVariable int id, @RequestBody PacienteRequestDTO pacienteRequestDTO){
+        return ResponseEntity.ok().body(pacienteService.atualizarPaciente(id, pacienteRequestDTO));
     }
 
     //@DeleteMapping("/deletar/{id}")

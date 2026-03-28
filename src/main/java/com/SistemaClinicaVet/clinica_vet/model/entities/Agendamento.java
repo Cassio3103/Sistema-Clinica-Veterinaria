@@ -1,14 +1,13 @@
 package com.SistemaClinicaVet.clinica_vet.model.entities;
 
 import com.SistemaClinicaVet.clinica_vet.Repository.ServicoRepository;
-import com.SistemaClinicaVet.clinica_vet.model.Status;
+import com.SistemaClinicaVet.clinica_vet.model.StatusAgendamento;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.time.LocalDate;
@@ -30,12 +29,12 @@ public class Agendamento implements ServicoRepository {
     @Setter
     private ServicoRepository tipoServico;
     @Setter
-    private Status statusAgendamento;
+    private StatusAgendamento statusAgendamento;
 
     private LocalDateTime DataHora;
 
     public Agendamento(int agendamento_id, Date dataAgendamento, LocalDate horariosAgendamento,
-                       ServicoRepository tipoServico, Status statusAgendamento){
+                       ServicoRepository tipoServico, StatusAgendamento statusAgendamento){
         this.agendamento_id = agendamento_id;
         this.dataAgendamento = dataAgendamento;
         this.horariosAgendamentos = horariosAgendamento;
