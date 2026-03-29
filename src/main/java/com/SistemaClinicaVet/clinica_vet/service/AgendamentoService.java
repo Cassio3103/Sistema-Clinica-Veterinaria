@@ -4,6 +4,7 @@ import com.SistemaClinicaVet.clinica_vet.Exception.AgendamentoIndisponivelExcept
 import com.SistemaClinicaVet.clinica_vet.Repository.AgendamentoRepository;
 
 import com.SistemaClinicaVet.clinica_vet.model.entities.Agendamento;
+import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class AgendamentoService {
     @Autowired
     private AgendamentoRepository agendamentoRepository;
 
-    public Agendamento criarAgenamento(Agendamento agendamento){
+    public Agendamento criarAgenamento(@NonNull Agendamento agendamento){
         if(agendamento.getDataHora().isBefore(LocalDateTime.now())){
             throw new AgendamentoIndisponivelException("Data inválida: Está no passado!");
         }

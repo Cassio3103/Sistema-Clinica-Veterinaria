@@ -1,40 +1,26 @@
 package com.SistemaClinicaVet.clinica_vet.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
-import org.jspecify.annotations.NonNull;
+public enum Cargo {
 
-@Getter
-@Entity
-public abstract class Cargo {
+    VETERINARIO("Médico veterinário"),
+    TOSADOR("Tosador"),
+    ATENDENTE("Atendente");
 
-    @Id
-    @GeneratedValue
-    private int idCargo;
-    private String nomeCargo;
-    @Setter
-    private double salarioBase;
-    @Setter
-    private int horasTrabalhadas;
+    private final String nome;
 
-    public void setNomeCargo(@NonNull String nomeCargo){
-        switch (nomeCargo){
-            case "Veterinário":
-            case "veterinário":
-            case "Tosador":
-            case "tosador":
-            case "Atendente":
-            case "atendente":
-            case "Veterinario":
-            case "veterinario":
-                this.nomeCargo = nomeCargo;
-                    break;
-            default:
-                throw new IllegalArgumentException("Cargo não definido!");
-        }
+    Cargo(String nome){
+        this.nome = nome;
     }
+
+    public String getNome(){return nome;}
+
+    /*
+    *  -> IMPLEMENTAR MÉTODOS HÍBRIDOS DENTRO DESSA CLASSE PARA:
+    *  1. SALÁRIO BASE DOS CARGOS.
+    *  2. BONUS.
+    *
+    * -> O VETERINÁRIO É OBRIGADO A REALIZAR PLANTÕES.
+    * -> O ATENDENTE É OPCIONAL CASO HAJA ANIMAIS INTERNADOS.
+    * */
 
 }

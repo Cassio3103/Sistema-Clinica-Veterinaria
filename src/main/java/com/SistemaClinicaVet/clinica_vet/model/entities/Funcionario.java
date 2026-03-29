@@ -13,7 +13,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @Entity
-public class Funcionario extends Cargo {
+@NoArgsConstructor
+public class Funcionario {
 
     private int id_funcionario;
     private String nomeFuncinonario;

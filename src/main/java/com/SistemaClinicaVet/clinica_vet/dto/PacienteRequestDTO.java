@@ -1,6 +1,5 @@
 package com.SistemaClinicaVet.clinica_vet.dto;
 
-import lombok.Getter;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;

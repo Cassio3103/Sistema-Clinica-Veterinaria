@@ -1,9 +1,6 @@
 package com.SistemaClinicaVet.clinica_vet.service;
 
-import com.SistemaClinicaVet.clinica_vet.service.MetodosAuxilixaresService;
 import com.SistemaClinicaVet.clinica_vet.Exception.NoChangeException;
-import com.SistemaClinicaVet.clinica_vet.Exception.PacienteInexistenteException;
-import com.SistemaClinicaVet.clinica_vet.Exception.PacienteNaoEncontradoException;
 import com.SistemaClinicaVet.clinica_vet.Repository.PacienteRepository;
 import com.SistemaClinicaVet.clinica_vet.dto.PacienteRequestDTO;
 import com.SistemaClinicaVet.clinica_vet.dto.PacienteResponseDTO;
@@ -98,9 +95,9 @@ public class PacienteService extends MetodosAuxilixaresService{
         );
     }
 
-    public PacienteResponseDTO buscarPaciente(int paciente_id, PacienteRequestDTO pacienteRequestDTO){
+    public PacienteResponseDTO buscarPaciente(int pacienteId){
 
-        Paciente paciente = verificarPaciente(paciente_id);
+        Paciente paciente = verificarPaciente(pacienteId);
 
         return new PacienteResponseDTO(
                 paciente.getPaciente_id(),
@@ -112,6 +109,12 @@ public class PacienteService extends MetodosAuxilixaresService{
                 paciente.getRaca(),
                 paciente.getPossuiProblemaSaude()
         );
+    }
+
+
+    public void deletarPaciente(int paciente_id){
+        verificarPaciente(paciente_id);
+        pacienteRepository.deleteById(paciente_id);
     }
 
 }
